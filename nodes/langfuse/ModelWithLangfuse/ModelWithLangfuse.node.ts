@@ -20,7 +20,7 @@ export class ModelWithLangfuse implements INodeType {
 		name: 'modelWithLangfuse',
 		icon: 'file:langfuse.svg',
 		group: ['transform'],
-		version: [1, 1.1, 1.2],
+		version: [1],
 		description: 'Wraps a language model with Langfuse for tracking and monitoring',
 		defaults: {
 			name: 'Model with Langfuse',

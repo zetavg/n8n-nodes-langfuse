@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-langfuse",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "n8n community nodes that let you use Langfuse in your n8n workflows.",
   "keywords": [
     "n8n-community-node-package"

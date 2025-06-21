@@ -40,12 +40,26 @@ export class ChainLlmWithCallbacks extends UpstreamChainLlm {
 			return patched
 		})()
 
+		// @ts-ignore this.description should be assigned in the super constructor
+		const { version: _, ...restDescription }: { version: Array<number> } = this.description
+
+		// HACK:
+		// In the database, the table `installed_nodes` stores the `latestVersion` as INTEGER (SQLite) or int4 (PostgreSQL), and the installation will fail if PostgreSQL is used (user will see something like `Error loading package "n8n-nodes-langfuse" : Failed to save installed package Cause: invalid input syntax for type integer: "1.7"`)
+		// const latestVersion = Math.max(...version);
+		// const latestVersionInt = Math.ceil(latestVersion);
+		// if (latestVersion !== latestVersionInt) {
+		// 	version.push(latestVersionInt);
+		// }
+		const version = [2]
+
 		// @ts-ignore
 		this.description = {
-			// @ts-ignore this.description should be assigned in the super constructor
-			...this.description,
+			...restDescription,
 			// @ts-ignore
 			displayName: `${this.description.displayName} with Callbacks`,
+			version,
+			// @ts-ignore
+			version: this.description.version,
 			inputs: patchedInputs as any,
 		}
 	}
