@@ -1,26 +1,26 @@
 {
-  "name": "n8n-nodes-<...>",
-  "version": "0.1.0",
-  "description": "",
+  "name": "n8n-nodes-langfuse",
+  "version": "0.0.1",
+  "description": "n8n community nodes that let you use Langfuse in your n8n workflows.",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "zetavg",
+    "email": "mail@zeta.vg"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/zetavg/n8n-nodes-langfuse.git"
   },
   "engines": {
     "node": ">=20.15"
   },
   "main": "index.js",
   "scripts": {
-    "build": "npx rimraf dist && tsc && gulp build:icons",
+    "build": "rm -rf dist && tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
@@ -30,16 +30,28 @@
   "files": [
     "dist"
   ],
+  "packageManager": "pnpm@8.15.4",
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/LangfuseApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/langchain/AgentWithCallbacks/AgentWithCallbacks.node.js",
+      "dist/nodes/langchain/ChainLlmWithCallbacks/ChainLlmWithCallbacks.node.js",
+      "dist/nodes/langfuse/LangfuseCallbackHandler/LangfuseCallbackHandler.node.js",
+      "dist/nodes/langfuse/LangfuseGetPrompt/LangfuseGetPrompt.node.js",
+      "dist/nodes/langfuse/LangfuseObservation/LangfuseObservation.node.js",
+      "dist/nodes/langfuse/LangfuseObservationUpdate/LangfuseObservationUpdate.node.js",
+      "dist/nodes/langfuse/LangfuseTrace/LangfuseTrace.node.js",
+      "dist/nodes/langfuse/LangfuseTraceUpdate/LangfuseTraceUpdate.node.js",
+      "dist/nodes/langfuse/ModelWithLangfuse/ModelWithLangfuse.node.js",
+      "dist/nodes/utils/LogCurrentTime/LogCurrentTime.node.js"
     ]
+  },
+  "dependencies": {
+    "langfuse": "^3.37.4",
+    "langfuse-langchain": "^3.37.4"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "~8.32.0",
